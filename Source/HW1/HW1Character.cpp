@@ -7,6 +7,7 @@
 #include "GameFramework/Controller.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "InputActionValue.h"
+#include "Perception/AISense_Hearing.h"
 
 AHW1Character::AHW1Character()
 {
@@ -59,6 +60,20 @@ void AHW1Character::Tick(float DeltaSeconds)
     else
     {
         Stamina = FMath::Clamp(Stamina + FMath::Max(0.0f, StaminaRegenerationRate) * Step, 0.0f, Capacity);
+    }
+
+    if (bIsSprinting && GetCharacterMovement()->IsMovingOnGround() && GetVelocity().SizeSquared2D() > FMath::Square(100.0f))
+    {
+        SprintNoiseCountdown -= Step;
+        if (SprintNoiseCountdown <= 0.0f)
+        {
+            UAISense_Hearing::ReportNoiseEvent(this, GetActorLocation(), 1.0f, this, 2400.0f, TEXT("Sprint"));
+            SprintNoiseCountdown = 0.55f;
+        }
+    }
+    else
+    {
+        SprintNoiseCountdown = 0.0f;
     }
 }
 

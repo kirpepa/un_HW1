@@ -104,6 +104,9 @@ public:
     UCameraComponent* GetFollowCamera() const { return FollowCamera; }
 
 private:
+    // Footstep noise is emitted only while sprinting and actually moving on the ground.
+    float SprintNoiseCountdown = 0.0f;
+
     // Exhaustion deliberately keeps this latched until the input is released.
     bool bSprintInputHeld = false;
     void StopSprinting();

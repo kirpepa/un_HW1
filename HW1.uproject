@@ -2,11 +2,16 @@
   "FileVersion": 3,
   "EngineAssociation": "5.8",
   "Category": "Games",
-  "Description": "Third Person: C++ sprint, interaction and stamina",
+  "Description": "Homework 1 + 2: Third Person, PCG environment and Behavior Tree guard",
   "Modules": [
     {
       "Name": "HW1",
       "Type": "Runtime",
+      "LoadingPhase": "Default"
+    },
+    {
+      "Name": "HW1Editor",
+      "Type": "Editor",
       "LoadingPhase": "Default"
     }
   ],
@@ -14,6 +19,14 @@
     {
       "Name": "EnhancedInput",
       "Enabled": true
+    },
+    {
+      "Name": "PCG",
+      "Enabled": true
+    },
+    {
+      "Name": "AndroidFileServer",
+      "Enabled": false
     }
   ]
 }
